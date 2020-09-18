@@ -7,7 +7,11 @@ def processtitle(apikey: str, title: str):
     searchkey = title.replace(' ' , '+')
     generatedlink = api_url + searchkey +'&type=movie' + '&apikey=' + apikey
     response = requests.get(url = generatedlink).json()
-    return response
+    if(response['Response']):
+        return response
+    else:
+        print('Invalid response for movie title' + title)
+        return 
 
 
 def gettitleinfo(response : dict):
